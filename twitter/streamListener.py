@@ -2,10 +2,12 @@ import tweepy
 from tweepy import Stream
 from tweepy.streaming import StreamListener
 from config import Config
+
 auth = tweepy.OAuthHandler(Config.consumer_key, Config.consumer_secret)
 auth.set_access_token(Config.access_token, Config.access_token_secret)
 
-class myListener(StreamListener):
+
+class MyListener(StreamListener):
     def on_data(self, raw_data):
         try:
             with open('python.json', 'w') as f:
@@ -15,8 +17,10 @@ class myListener(StreamListener):
             print("Error on_data:%s" % str(e))
         return True
 
-    def on_error(self, status):
-        print(status)
+    def on_error(self, status_code):
+        if status_code == 420:
+            print("ERROR: Rate limit reached")
+        print(status_code)
         return True
 
     def on_timeout(self):
@@ -24,7 +28,7 @@ class myListener(StreamListener):
         return True  # Don't kill the stream
 
 
-twitter_stream = Stream(auth, myListener())
+twitter_stream = Stream(auth, MyListener())
 
-#use filter to collect twitter information
-twitter_stream.filter(track=["melbourne"])
+# use filter to collect twitter information based on Australia field
+twitter_stream.filter(locations=[114.46, -38.28, 152.7, -11.79])
