@@ -1,0 +1,31 @@
+# README from yuan
+
+# The 3 node cluster has been set successfully.
+
+$ curl http://admin:password@115.146.84.191:5984/_membership
+{"all_nodes":["couchdb@115.146.84.191","couchdb@115.146.86.111","couchdb@115.146.86.90"],
+"cluster_nodes":["couchdb@115.146.84.191","couchdb@115.146.86.111","couchdb@115.146.86.90","couchdb@127.0.0.1","couchdb@127.0.0.1"]}
+
+# only three nodes cluster
+# clustering couchdb nodes in:
+#       ins0 "couchdb@115.146.84.191"
+#       ins2 "couchdb@115.146.86.111"
+#       ins3 "couchdb@115.146.86.90"
+
+# !!there is no couchdb in ins1 "115.146.86.107"!!
+
+# Ideally, "couchdb@127.0.0.1" should not appear in cluster_nodes, however,
+# in this case, it could be ignored, them just not access couchdb through 127.0.0.1
+# or localhost, at the same time, do not do any operation to couchdnb@127.0.0.1,
+# just use couchdn with external ip address, as i am not sure whether
+# there are some wrong inside. Using the nodes metioned(with external ip) should be fine.
+# I will remove the couchdb@127.0.0.1 from cluster_nodes finally.
+
+ # path to couchdb: /opt/couchdb
+
+# The location of couchdb is /opt now, the data is in /opt/data. Finally, it should
+# be set to /mnt, but I haven't done that successfully, but you're free to use the
+# cluster node.
+
+# username: admin
+# password: password
