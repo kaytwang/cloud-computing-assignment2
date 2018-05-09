@@ -1,0 +1,32 @@
+# Created by Yuan Wang (yuanw8)
+# Cloud and Cluster Computing Assignment 2
+# Semester 1, 2018
+
+---
+#- hosts: targetIns
+#  tasks:
+
+    - name: send python file to targetIns
+      copy:
+        src: /Users/yvette/OneDrive/Code/Ansible/CC_assign2_demo/data/Config.py
+        dest: /home/ubuntu
+
+    - name: send python file to targetIns
+      copy:
+        src: /Users/yvette/OneDrive/Code/Ansible/CC_assign2_demo/data/Connector.py
+        dest: /home/ubuntu
+
+    - name: send python file to targetIns
+      copy:
+        src: //Users/yvette/OneDrive/Code/Ansible/CC_assign2_demo/data/DataProcessor.py
+        dest: /home/ubuntu
+
+    - name: send python file to targetIns
+      copy:
+        src: /Users/yvette/OneDrive/Code/Ansible/CC_assign2_demo/data/Harvester_couchdb.py
+        dest: /home/ubuntu
+
+    - name: Harvest, process and save to couchdb
+      command: python /home/ubuntu/Harvester_couchdb.py
+
+...
