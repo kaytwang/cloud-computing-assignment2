@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+    <head>
+        <script src="/public/javascripts/Chart.js"></script>
+    </head>
+    <body>
+        <p align="center">10 Highest income</p>
+        <canvas width="20" height="10" id="LineChart"></canvas>
+        <script>
+            var ctxL = document.getElementById("LineChart").getContext('2d');
+                            var myLineChart = new Chart(ctxL, {
+                                type: 'line',
+                                data: {
+                                    labels: ["Kooyong", "Connewarre", "Middle Park", "Docklands", "East Melbourne", "Toorak", "Canterbury","Albert Park","Port Melbourne","Brighton"],
+                                    datasets: [
+                                        {
+                                            label: "Income",
+                                            fillColor: "rgba(220,220,220,0.2)",
+                                            strokeColor: "rgba(220,220,220,1)",
+                                            pointColor: "rgba(220,220,220,1)",
+                                            pointStrokeColor: "#fff",
+                                            pointHighlightFill: "#fff",
+                                            pointHighlightStroke: "rgba(220,220,220,1)",
+                                            data: [74599.83768, 69180.96327, 66827.31075, 66265.91076, 64787.83357, 64624.23576, 64506.29591,63402.44694,63216.95454,62968.8913]
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    scaleUse2Y:true, 
+                                    responsive: true
+                                }
+                            });
+        </script>
+    </body>
+</html>

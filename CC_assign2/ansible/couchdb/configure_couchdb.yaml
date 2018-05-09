@@ -1,0 +1,61 @@
+# Created by Yuan Wang (yuanw8)
+# Cloud and Cluster Computing Assignment 2
+# Semester 1, 2018
+
+---
+
+#- hosts: targetIns
+#  tasks:
+
+#curl -X PUT http://admin:team20@127.0.0.1:5984/_node/couchdb@127.0.0.1/_config/couchdb/database_dir -d '"/mnt/volume1/data"'
+    - name: change db_data's location
+      uri:
+        url: http://127.0.0.1:5984/_node/data@127.0.0.1/_config/data/database_dir
+        method: PUT
+        body: '"/mnt/data"'
+
+#curl -X PUT http://admin:team20@127.0.0.1:5984/_node/couchdb@127.0.0.1/_config/couchdb/view_index_dir -d '"/mnt/volume1/data"'
+    - name: change db_view's location
+      uri:
+        url: http://127.0.0.1:5984/_node/data@127.0.0.1/_config/data/view_index_dir
+        method: PUT
+        body: '"/mnt/data"'
+
+# change node name in /opt/data/etc/vm.args
+    - name: change node name
+      replace:
+        path: /opt/data/etc/vm.args
+        regexp: '-name data@127.0.0.1'
+        replace: '-name data@{{ ansible_default_ipv4.address }}'
+
+#curl -X PUT http://admin:password@127.0.0.1:5984/_node/couchdb@115.146.84.191/_config/chttpd/bind_address -d '"0.0.0.0"'
+    - name: change bind ip
+      uri:
+        url: http://127.0.0.1:5984/_node/data@127.0.0.1/_config/chttpd/bind_address
+        method: PUT
+        body: '"0.0.0.0"'
+
+#curl -X PUT http://127.0.0.1:5984/_node/couchdb@127.0.0.1/_config/admins/admin -d '"team20"'
+    - name: change username and password
+      uri:
+        url: http://127.0.0.1:5984/_node/data@127.0.0.1/_config/admins/admin
+        method: PUT
+        body: '"team20"'
+
+#sudo service data restart
+    - name: restart data service
+      systemd:
+        state: restarted
+        daemon_reload: yes
+        name: data
+
+
+
+
+
+
+
+
+
+
+...
