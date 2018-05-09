@@ -1,4 +1,4 @@
-# The Wen App
+# The Web App
 The project is developed to show the result of twitter data analysis, and combined with map and the income of each suburb in VIC.    
 
 ## Server 
