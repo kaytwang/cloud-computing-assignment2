@@ -1,5 +1,4 @@
-# cloud-computing-assignment2
-This assignment is for COMP90024 cluster & cloud computing
+# COMP90024 cluster & cloud computing assignment2
 
 Please see：
 
