@@ -1,0 +1,228 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+html, body {
+  --def: #D2691E;
+  --inv: 	#000000;
+  /*background: #999999;*/
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header{
+  /*background: lightcyan;*/
+  width: 100%;
+  height: 10%;
+  padding-left: 5%;
+  color: black;
+  /*background: #555555;*/
+  opacity: 0.6;
+  float: top;
+  padding-top: 1%;
+  padding-bottom: 2%;
+}
+
+.contents{
+  height: 90%;
+  border-top-style: dashed;
+  border-color: #cccccc;
+}
+#subjects{
+  height: 100%;
+  width: 10%;
+  float: left;
+  opacity: 0.6;
+  color: black;
+  text-align: center;
+  /*background: #999999;*/
+  padding-bottom: 50.5%;
+  border-right-style: dashed;
+  border-right-color: #cccccc;
+
+}
+
+#menuTitle{
+  font-size: 24px;
+  border-bottom-style: dashed;
+  border-bottom-color: #cccccc;
+}
+
+
+#textField{
+  width: 50%;
+  height: 10%;
+}
+
+input{
+
+  border-bottom-style: none;
+/*  border-bottom-color: black;*/
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  /*background: #999999;*/
+}
+
+#one,#two,#three,#pro,#wanghong,#home,#in{
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+    border-bottom-style:none;
+    background: none;
+   
+}
+
+#button{
+  /*background: #D2691E;*/
+  /*border-bottom: solid;*/
+  /*border-color: #D2691E;*/
+  height: 100%;
+  margin-left:15%;
+  width: 10%;
+  opacity: 0.6;
+  text-align: center;
+}
+
+
+ .map {
+  /*visibility: hidden;*/
+  height: 100%;
+  width: 90%;
+  float: left;
+  border-left-style: none;
+  border-right-style: none;
+  border-top-style: none;
+  border-bottom-style: none;
+
+}
+
+.btn {
+  position: relative;
+  color: var(--inv);
+  -webkit-transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+  transition: all 400ms cubic-bezier(0.77, 0, 0.175, 1);
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.btn:before, .btn:after {
+  content: '';
+  position: absolute;
+  -webkit-transition: inherit;
+  transition: inherit;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--def);
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+
+.btn:hover:before {
+  -webkit-transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.btn:hover:after {
+  background: var(--inv);
+  -webkit-transition-delay: .2s;
+  transition-delay: .2s;
+}
+.from-top:before,
+.from-top:after {
+  left: 0;
+  height: 0;
+  width: 100%;
+}
+
+.from-top:before {
+  bottom: 0;
+  border: 1px solid var(--inv);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.from-top:after {
+  top: 0;
+  height: 0;
+}
+
+.from-top:hover:before,
+.from-top:hover:after {
+  height: 100%;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.dropbtn {
+
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* 下拉内容 (默认隐藏) */
+.dropdown-content {
+    background-color: #f9f9f9;
+    display: none;
+    position: absolute;
+
+}
+.dropdown-content a:hover {background-color: #A9A9A9}
+
+/* 在鼠标移上去后显示下拉菜单 */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.footer .push {
+  height: 50px;
+
+}
+.dropdown-content button {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+footer{
+  border-top-style: dashed;
+  border-color: #cccccc;
+  /*background: #cccccc;*/
+  text-align: center;
+  font-size: 5px;
+  color: #cccccc;
+
+}
