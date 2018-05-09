@@ -1,0 +1,9 @@
+.idea
+*.iml
+
+*.pyc
+__pycache__
+
+config.ini
+hosts.ini
+*.retry
