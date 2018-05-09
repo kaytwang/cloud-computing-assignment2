@@ -8,9 +8,9 @@ The project also includes:
   - Boto file for instance creation
   - Ansible file for cluster deployment
   - CouchDB API
-  - Part of Data Harvester
-  - Part of Data processor
-  - Part of Web Server document updater
+  - Part of the Data Harvester
+  - Part of the Data processor
+  - Part of the Web Server document updater
 
 Main files Description
 
