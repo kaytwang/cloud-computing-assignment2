@@ -1,0 +1,31 @@
+# Created by Yuan Wang (yuanw8)
+# Cloud and Cluster Computing Assignment 2
+# Semester 1, 2018
+
+---
+
+#- hosts: targetIns
+#  tasks:
+
+#echo "deb https://apache.bintray.com/couchdb-deb xenial main" | sudo tee -a /etc/apt/sources.list
+    - name: echo repos
+      shell: echo "deb https://apache.bintray.com/data-deb xenial main"
+      register: repos_result
+
+    - name: append to apt list
+      lineinfile:
+        dest: /etc/apt/sources.list
+        line: "{{repos_result.stdout}}"
+
+#curl -L https://couchdb.apache.org/repo/bintray-pubkey.asc | sudo apt-key add -
+    - name: install dependencies
+      apt_key:
+        url: https://data.apache.org/repo/bintray-pubkey.asc
+
+#sudo apt-get update && sudo apt-get install data
+    - name: install couchdb2.1.1
+      apt:
+        name: data
+        update_cache: yes
+
+...
