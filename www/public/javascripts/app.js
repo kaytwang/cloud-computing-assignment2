@@ -217,11 +217,6 @@ function cover(m){
     var source = new EventSource('http://115.146.86.135/onetwo');
     var div = document.getElementById('one');
     
-//    var m = new google.maps.Map(document.getElementById('map'), {
-//    center: {lat:-36.630520, lng:144.922716},
-//    zoom: 7
-//    });
-    
     source.onopen = function (event) {};
     
     source.onmessage = function (event) {

@@ -70,15 +70,15 @@ router.get('/three', async (ctx, next) => {
 
 
 function reader(file){
-    // readLineStream第一个参数为ReadStream实例，也可以为文件名
+  
     var dataResponse = new Array();
     var pathhead = './public/javascripts/'
     var s = readLine(fs.createReadStream(pathhead+file), {
-      // 换行符，默认\n
+      
       newline: '\n',
-      // 是否自动读取下一行，默认false
+     
       autoNext: false,
-      // 编码器，可以为函数或字符串（内置编码器：json，base64），默认null
+      
       encoding: function (data) {
 //          console.log("hello")
           dataResponse.push(JSON.parse(data))
