@@ -31,4 +31,9 @@ class MyListener(StreamListener):
 twitter_stream = Stream(auth, MyListener())
 
 # use filter to collect twitter information based on Australia field
-twitter_stream.filter(locations=[114.46, -38.28, 152.7, -11.79])
+while True:
+    try:
+        twitter_stream.filter(locations=[114.46, -38.28, 152.7, -11.79])
+    except Exception as e:
+        print e
+    pass

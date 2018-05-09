@@ -2,7 +2,7 @@
 # Cloud and Cluster Computing Assignment 2
 # Semester 1, 2018
 
-from Connector import Connector
+from twitter.Connector import Connector
 conn = Connector()
 
 conn.insert_file_pro_res('D:\\fatFiles\projectdata.json', conn.twitterdbpro_pub_result)
