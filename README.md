@@ -9,7 +9,7 @@ front-end configration file in www folder
 
 harvest and analysis twitter in twitter folder
 
-Team20
+# Team20
 
 fanglin chen- fanglinc@student.unimelb.edu.au
 
