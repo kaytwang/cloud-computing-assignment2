@@ -1,0 +1,31 @@
+# Created by Yuan Wang (yuanw8)
+# Cloud and Cluster Computing Assignment 2
+# Semester 1, 2018
+
+---
+
+- hosts: targetIns
+  tasks:
+
+    - name: install essentials
+      include: essentials/install_essential.yaml
+
+    - name: install couchdb
+      include: couchdb/install_couchdb.yaml
+
+    - name: configure couchdb
+      include: couchdb/configure_couchdb.yaml
+
+    - name: enable cluster
+      include: couchdb/enable_cluster_each.yaml
+
+    - name: add node
+      include: couchdb/add_node.yaml
+
+    - name: run data harvestor and processor
+      include: python/run_harvester_process.yaml
+
+...
+
+
+
