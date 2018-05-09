@@ -1,24 +1,102 @@
 const router = require('koa-router')()
+const dbConnection = require('../dbConnection.js');
+var PassThrough = require('stream').PassThrough;
+var fs = require('fs')
+var res
+var readLine = require('lei-stream').readLine;
+var onetwo;
+var three;
 
 router.get('/', async (ctx, next) => {
-  await ctx.render('index.html', {
-    title: 'Hello Koa 2!'
-  })
+    onetwo = reader('504target.json');
+    three = reader('employ2006.json');
+//    console.log(dataResponse)
+    await ctx.render('index.html', {})
 })
 
-//router
-//  ctx. ctx.render('map.html', {
-//                title: 'load map view'
-//            });
+router.get('/onetwo', async (ctx, next) => {
+    var call = 0
+    ctx.response.type='application/json';'charset=utf-8';
+//    ctx.response.set('Cache-Control', 'no-cache');
+    ctx.response.set({'Access-Control-Allow-Origin':'*',
+                      'Content-Type':'text/event-stream',
+                      'Cache-Control':'no-cache'
+                     });
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
+    var date = ""
+    data = JSON.stringify(onetwo[call])
+    let r = `retry: 10000\ndata:${date}\n\n`
+    const stream = new PassThrough()
+    var interval = setInterval(function(){
+        date =  JSON.stringify(onetwo[call])
+        r = `retry: 10000\ndata:${date}\n\n`
+        stream.write(r)
+        call++
+        if(call==10000){
+//            stream
+            clearInterval(interval)
+        }
+    }, 6)
+    
+    ctx.response.body = stream
 })
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
+router.get('/three', async (ctx, next) => {
+     var call = 0
+    ctx.response.type='application/json';'charset=utf-8';
+//    ctx.response.set('Cache-Control', 'no-cache');
+    ctx.response.set({'Access-Control-Allow-Origin':'*',
+                      'Content-Type':'text/event-stream',
+                      'Cache-Control':'no-cache'
+                     });
+
+    var date = ""
+    data = JSON.stringify(three[call])
+    let r = `retry: 10000\ndata:${date}\n\n`
+    const stream = new PassThrough()
+    var interval = setInterval(function(){
+        date =  JSON.stringify(three[call])
+        r = `retry: 10000\ndata:${date}\n\n`
+        stream.write(r)
+        call++
+        if(call==three.length){
+            clearInterval(interval)
+        }
+    }, 1)
+//    if(call!=three.length){
+        ctx.response.body = stream
+//    }
 })
+
+
+function reader(file){
+    // readLineStream第一个参数为ReadStream实例，也可以为文件名
+    var dataResponse = new Array();
+    var pathhead = './public/javascripts/'
+    var s = readLine(fs.createReadStream(pathhead+file), {
+      // 换行符，默认\n
+      newline: '\n',
+      // 是否自动读取下一行，默认false
+      autoNext: false,
+      // 编码器，可以为函数或字符串（内置编码器：json，base64），默认null
+      encoding: function (data) {
+//          console.log("hello")
+          dataResponse.push(JSON.parse(data))
+        return JSON.parse(data);
+      }
+    });
+    
+    s.on('data', function (data) {
+//      console.log(data);
+      s.next();
+    });
+    
+    s.on('end', function () {
+//        console.log(dataResponse)
+        console.log('end');
+    });
+    
+    return dataResponse
+}
 
 module.exports = router

@@ -4,67 +4,124 @@
 <!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Twitter Analysis</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
--->
-  <link rel="stylesheet" href="/public/stylesheets/style.css">
-  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
-  <script src="/public/javascripts/angular.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Twitter Analysis</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/public/stylesheets/style.css">
+    <link rel="stylesheet" href="/public/stylesheets/bootstrap.css">
+    <script href="/public/javascripts/bootstrap.js"></script>
+    <script src="/public/javascripts/Chart.js"></script>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #legend {
+        font-family: Arial, sans-serif;
+        background: #fff;
+        padding: 10px;
+        margin: 10px;
+        border: 3px solid #000;
+      }
+      #legend h3 {
+        margin-top: 0;
+      }
+      #legend img {
+        vertical-align: middle;
+      }
+      
+    </style>
+
     
 </head>
 <body>
-  <!--<ul class="menu">-->
-    <!--<li><a href="#!/view1">view1</a></li>-->
-    <!--<li><a href="#!/view2">view2</a></li>-->
-  <!--</ul>-->
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <!--<div ng-view></div>-->
-
-  <!--<div>Angular seed app: v<span app-version></span></div>-->
+  
   <div class = "header">
     <h1>Twitter Analysis</h1>
   </div>
-  <!--</div>-->
+
   <div class="contents">
-    <!--The header of the pages-->
-
-
+    
     <div id="subjects">
       <div id = "menuTitle"><b>Menu</b></div>
-      <div class="btn from-top">Scenario one</div>
-      <div class="btn from-top">Scenario two</div>
-      <!--<div class="btn from-top">Third</div>-->
+         <div class="btn from-top"><button id="home" onClick="home()">Home</button></div>
+        <div class="btn from-top"><button id="one" onClick="onetwo()">Scenario one</button></div>
+        
+        <div class="btn from-top"><button id="two" onClick="two()">Scenario two</button>
+            
+        </div>
+        <div class="dropdown">
+            <div class="btn from-top">
+                <button class="dropbtn" id="three">Scenario three</button> </div>
+                <div class="dropdown-content">
+                    <div class="btn from-top"><button id="wanghong" onclick="getCover()">Sentiment<br>and<br>income</button></div>
+                    <div class="btn from-top"><button id="pro" onClick="getProportion()">Proportion</button></div>
+                    <div class="btn from-top"><button id="in" onClick="getincome()">Income</button></div>
+            </div>
+           
+        </div>
+        <div style = display:none id="ownlegend"></div>
     </div>
-
-    <div id = "search">
-      <div id ="textField">
-        <input id="input" type="text" name = "keyword" placeholder="Enter the key word">
+<!--      <form action="drawMap" method="get">-->
+        <div style = display:none class="map" id="map" style=display:none>
+             
       </div>
-      <div name = "button1" id = "button"><div class="btn from-top"><b>Search</b></div></div>
-    </div>
 
-    <iframe ng-view class="Map" name = "map" src="views/map.html"></iframe>
-<!--      <div ng-include = 'map.html'></div>-->
+        <div class="map" id="introduction" >
+                <div align="center" id="one"><h2>Scenior one</h2>
+                <p class="i"> The project is intended to study how sentiment of twitter distributes and how these sentiments can be connected with geo-related factors. We would like to categorize the sentiments into positive, negative and neutral.
+                </p>                 
+                  </div>
+                  <div align="center" id="two">
+                      <h2>Scenior two</h2>
+                      <p class="i"> In a deeper way, we were curious about the places that people with amounts of followers would like to hang out and tweet.
+                </p>
+                  </div>
+                  <div align="center" id="three">
+                      <h2>Scenior three</h2>
+                      <p class="i">we included income dataset in our project. To explore the wealthy and sentiment association</p>
+                  </div>
+        </div>
+      <div class="map" style = display:none id="incomechart">
+        <iframe id="LineChart" align="center" frameborder="0" scrolling="no" class="map" src="views/chart1.html"></iframe>
+      </div>
+      <div class="map" style = display:none id="chart">
+          <iframe id="LineChart2" align="center" frameborder="0" scrolling="no" class="map" src="views/chart2.html"></iframe>
+      </div>
+            <div style=display:none id="legend"><h3>Income</h3></div>
+            
+    
+<!--      </form>-->
+    
+        <script>    
+            cover = document.getElementById('wanghong');
+            cover.onclick=function(){
+                hDiv=document.getElementById('introduction');
+                hDiv.style.display='none'
+                mDiv=document.getElementById('map');
+                mDiv.style.display='block'
+                pDiv=document.getElementById('chart');
+                pDiv.style.display='none'
+                iDiv=document.getElementById('incomechart');
+                iDiv.style.display='none'
+                
+                three(true)
+            }
+   
+      </script>
   </div>
 
-  <!-- Add your site or application content here -->
-  <!--<p>Hello world! This is HTML5 Boilerplate.</p>-->
-
-  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-  <!--<script>-->
-  <!--window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;-->
-  <!--ga('create','UA-XXXXX-Y','auto');ga('send','pageview')-->
-  <!--</script>-->
+ 
   <footer class = "footer">Copyright © University of Melbourne COMP90024<br>
     fanglin chen- fanglinc@student.unimelb.edu.au<br>
     Siyu Zhang - siyuz6@student.unimelb.edu.au<br>
@@ -73,18 +130,11 @@
     Yuan Wang - yuanw8@student.unimelb.edu.au</footer>
 
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  
-<!--  <script src="bower_components/angular-route/angular-route.js"></script>-->
-  <script src="/public/javascripts/app.js"></script>
-  
-    
-  <!--<script src="view1/view1.js"></script>-->
-  <!--<script src="view2/view2.js"></script>-->
-<!--  <script src="components/version/version.js"></script>-->
-<!--  <script src="components/version/version-directive.js"></script>-->
-<!--  <script src="components/version/interpolate-filter.js"></script>-->
+    <script src="/public/javascripts/map.js"></script>
+    <script src="/public/javascripts/vic.json"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbdsDk8_31eiaDZ5OOQByYF3SupNFHcOw&callback=initMap"
+            async defer></script>
+    <script src="/public/javascripts/app.js"></script>
+
 </body>
 </html>

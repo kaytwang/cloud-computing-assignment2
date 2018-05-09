@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+    <head>
+        <script src="/public/javascripts/Chart.js"></script>
+    </head>
+    <body>
+        <p align="center">10 Highest Propotion</p>
+        <canvas width="20" height="10" id="LineChart"></canvas>
+        <script>
+            var ctxL = document.getElementById("LineChart").getContext('2d');
+                            var myLineChart = new Chart(ctxL, {
+                                type: 'line',
+                                data: {
+                                    labels: ["Kooyong", "Connewarre", "Middle Park", "Docklands", "East Melbourne", "Toorak", "Canterbury","Albert Park","Port Melbourne","Brighton"],
+                                    datasets: [
+                                        {
+                                            label: "Employment to Population Radio",
+                                            pointStrokeColor: "#fff",
+                                            pointHighlightFill: "#fff",
+                                            pointHoverBackgroundColor: "rgba(255,255,255,0.8)",
+                                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                                            pointBorderColor: "rgba(75,192,192,1)",
+                                            pointBackgroundColor: "#fff",
+                                            backgroundColor: "rgba(75,192,192,0)",
+                                            borderColor: "rgba(75,192,192,1)",
+//                                            
+                                            data: [0.717949, 0.0, 0.742769, 0.720668, 0.748014, 0.711198,  0.765545
+                                                   ,0.756665,0.700162,0.736543]
+                                        },
+                                        {
+                                            label: "TAFE Propotion",
+                                            pointStrokeColor: "#fff",
+                                            pointHighlightFill: "#fff",
+                                            pointHoverBackgroundColor: "rgba(255,187,225,0.8)",
+                                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                                            pointBorderColor: "rgba(75,192,192,1)",
+                                            pointBackgroundColor: "#fff",
+                                            backgroundColor: "rgba(255,187,225,0)",
+                                            borderColor: "rgba(255,187,225,1)",
+//                                            
+                                            data: [0.170918, 0.267857, 0.166795, 0.183799, 0.145985, 0.179689, 0.188727,0.180559,0.187466,0.201282]
+                                        },
+                                        {
+                                            label: "University Proportion",
+//                                 
+                                            pointStrokeColor: "#fff",
+                                            pointHighlightFill: "#fff",
+                                            pointHoverBackgroundColor: "rgba(25,25,205,0.8)",
+                                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                                            pointBorderColor: "rgba(25,25,205,1)",
+                                            pointBackgroundColor: "#fff",
+                                            backgroundColor: "rgba(25,25,205,0)",
+                                            borderColor: "rgba(25,25,205,1)",
+                                            data: [0.530612, 0.410714, 0.492278, 0.372321, 0.541733, 0.476224, 0.537108,0.468774,0.384457,0.461538]
+                                        }
+                                    ]
+                                },
+                                options: {
+                                    scaleUse2Y:true, 
+                                    responsive: true
+                                }
+                            });
+        </script>
+    </body>
+</html>

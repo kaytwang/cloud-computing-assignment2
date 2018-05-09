@@ -1,9 +1,11 @@
 const router = require('koa-router')()
+const dbConnection = require('../dbConnection.js');
 
 router.prefix('/users')
 
 router.get('/', function (ctx, next) {
-  ctx.body = 'this is a users response!'
+    re = dbConnection('test')
+   ctx.body = re
 })
 
 router.get('/bar', function (ctx, next) {
