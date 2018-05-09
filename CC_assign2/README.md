@@ -1,4 +1,4 @@
-README
+Cluster Deployment with Boto and Ansible
 
 The CC_assign2_demo is the project which is used to show the one click deployment
 of a new cluster node.
