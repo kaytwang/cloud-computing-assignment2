@@ -24,7 +24,7 @@ To implement the app:
 
 - - - -
 ## Copyright
-1. The icon is download from icons8: https://icons8.com/
+1. The icon is downloaded from icons8: https://icons8.com/
 2. Bootstrap Chart: https://mdbootstrap.com/javascript/charts/
 3. Koa2: https://github.com/koajs/koa
 
